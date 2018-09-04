@@ -1,11 +1,11 @@
 ﻿{
 
-  "gemName" : "cloudmersive-image-recognition-api-client",
+  "gemName" : "cloudmersive-voice-recognition-api-client",
   "gemLicense": "Apache 2.0",
   "gemVersion": "1.2.9",
-  "gemHomepage": "https://www.cloudmersive.com/image-recognition-and-processing-api",
-  "gemSummary": "Advanced Machine Learning APIs for recognizing and processing images.",
-  "gemDescription": "Image Recognition and Processing APIs let you use Machine Learning to recognize and process images, including automatic caption generation, face recognition and NSFW classification, and also perform useful image modification operations.",
+  "gemHomepage": "https://www.cloudmersive.com/voice-recognition-and-speech-api",
+  "gemSummary": "The most powerful and cost-effective speech recognition and voice AI APIs, continuously updated.",
+  "gemDescription": "Speech APIs enable you to recognize speech and convert it to text using advanced machine learning, and also to convert text to speech.",
   "gemAuthor": "Cloudmersive"
   
 }  
