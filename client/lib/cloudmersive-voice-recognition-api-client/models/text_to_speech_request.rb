@@ -13,23 +13,28 @@ Swagger Codegen version: 2.3.1
 require 'date'
 
 module CloudmersiveVoiceRecognitionApiClient
-  # Result of recognizing speech
-  class SpeechRecognitionResult
-    # Recognition result in text format
-    attr_accessor :text_result
+  # Input to a Text To Speech request
+  class TextToSpeechRequest
+    # File format for output audio file: wav or mp3, default is mp3
+    attr_accessor :format
+
+    # Text to be converted to speech
+    attr_accessor :text
 
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'text_result' => :'TextResult'
+        :'format' => :'Format',
+        :'text' => :'Text'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'text_result' => :'String'
+        :'format' => :'String',
+        :'text' => :'String'
       }
     end
 
@@ -41,8 +46,12 @@ module CloudmersiveVoiceRecognitionApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}){|(k,v), h| h[k.to_sym] = v}
 
-      if attributes.has_key?(:'TextResult')
-        self.text_result = attributes[:'TextResult']
+      if attributes.has_key?(:'Format')
+        self.format = attributes[:'Format']
+      end
+
+      if attributes.has_key?(:'Text')
+        self.text = attributes[:'Text']
       end
 
     end
@@ -65,7 +74,8 @@ module CloudmersiveVoiceRecognitionApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          text_result == o.text_result
+          format == o.format &&
+          text == o.text
     end
 
     # @see the `==` method
@@ -77,7 +87,7 @@ module CloudmersiveVoiceRecognitionApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [text_result].hash
+      [format, text].hash
     end
 
     # Builds the object from hash

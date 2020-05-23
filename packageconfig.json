@@ -2,7 +2,7 @@
 
   "gemName" : "cloudmersive-voice-recognition-api-client",
   "gemLicense": "Apache 2.0",
-  "gemVersion": "1.2.9",
+  "gemVersion": "1.3.0",
   "gemHomepage": "https://www.cloudmersive.com/voice-recognition-and-speech-api",
   "gemSummary": "The most powerful and cost-effective speech recognition and voice AI APIs, continuously updated.",
   "gemDescription": "Speech APIs enable you to recognize speech and convert it to text using advanced machine learning, and also to convert text to speech.",
