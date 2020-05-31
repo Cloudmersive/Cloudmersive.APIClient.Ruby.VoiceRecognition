@@ -29,9 +29,9 @@ end
 
 api_instance = CloudmersiveVoiceRecognitionApiClient::SpeakApi.new
 
-format = "format_example" # String | File format to generate response in; possible values are \"mp3\" or \"wav\"
+format = 'format_example' # String | File format to generate response in; possible values are \"mp3\" or \"wav\"
 
-text = "text_example" # String | The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \"The quick brown fox jumps over the lazy dog.\"
+text = 'text_example' # String | The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \"The quick brown fox jumps over the lazy dog.\"
 
 
 begin

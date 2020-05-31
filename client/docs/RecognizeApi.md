@@ -28,7 +28,7 @@ end
 
 api_instance = CloudmersiveVoiceRecognitionApiClient::RecognizeApi.new
 
-speech_file = File.new("/path/to/file.txt") # File | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+speech_file = File.new('/path/to/file.txt') # File | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
 
 
 begin
