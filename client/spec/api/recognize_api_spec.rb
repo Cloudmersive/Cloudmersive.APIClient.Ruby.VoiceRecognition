@@ -32,13 +32,15 @@ describe 'RecognizeApi' do
     end
   end
 
-  # unit tests for recognize_file
-  # Recognize audio input as text using machine learning
-  # Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.
-  # @param speech_file Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+  # unit tests for speech_recognize_file_post
+  # Recognize audio input as text using Advanced AI
+  # Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.
   # @param [Hash] opts the optional parameters
+  # @option opts [String] :language_code ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+  # @option opts [String] :recognition_mode Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+  # @option opts [File] :speech_file 
   # @return [SpeechRecognitionResult]
-  describe 'recognize_file test' do
+  describe 'speech_recognize_file_post test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

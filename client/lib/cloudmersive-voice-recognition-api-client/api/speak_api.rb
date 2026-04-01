@@ -19,88 +19,24 @@ module CloudmersiveVoiceRecognitionApiClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Perform text-to-speech on a string
-    # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-    # @param format File format to generate response in; possible values are \&quot;mp3\&quot; or \&quot;wav\&quot;
-    # @param text The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \&quot;The quick brown fox jumps over the lazy dog.\&quot;
+    # Generate audio from text using Advanced AI
+    # Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.
     # @param [Hash] opts the optional parameters
-    # @return [Object]
-    def speak_post(format, text, opts = {})
-      data, _status_code, _headers = speak_post_with_http_info(format, text, opts)
+    # @option opts [TextToSpeechRequest] :body String input request
+    # @return [String]
+    def speech_speak_text_voice_basic_audio_post(opts = {})
+      data, _status_code, _headers = speech_speak_text_voice_basic_audio_post_with_http_info(opts)
       data
     end
 
-    # Perform text-to-speech on a string
-    # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-    # @param format File format to generate response in; possible values are \&quot;mp3\&quot; or \&quot;wav\&quot;
-    # @param text The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \&quot;The quick brown fox jumps over the lazy dog.\&quot;
+    # Generate audio from text using Advanced AI
+    # Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def speak_post_with_http_info(format, text, opts = {})
+    # @option opts [TextToSpeechRequest] :body String input request
+    # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
+    def speech_speak_text_voice_basic_audio_post_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SpeakApi.speak_post ...'
-      end
-      # verify the required parameter 'format' is set
-      if @api_client.config.client_side_validation && format.nil?
-        fail ArgumentError, "Missing the required parameter 'format' when calling SpeakApi.speak_post"
-      end
-      # verify the required parameter 'text' is set
-      if @api_client.config.client_side_validation && text.nil?
-        fail ArgumentError, "Missing the required parameter 'text' when calling SpeakApi.speak_post"
-      end
-      # resource path
-      local_var_path = '/speech/speak/text/basicVoice/{format}'.sub('{' + 'format' + '}', format.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/octet-stream'])
-      # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = @api_client.object_to_http_body(text)
-      auth_names = ['Apikey']
-      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'Object')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SpeakApi#speak_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Perform text-to-speech on a string
-    # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-    # @param req_config String input request
-    # @param [Hash] opts the optional parameters
-    # @return [Object]
-    def speak_text_to_speech(req_config, opts = {})
-      data, _status_code, _headers = speak_text_to_speech_with_http_info(req_config, opts)
-      data
-    end
-
-    # Perform text-to-speech on a string
-    # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-    # @param req_config String input request
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(Object, Fixnum, Hash)>] Object data, response status code and response headers
-    def speak_text_to_speech_with_http_info(req_config, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: SpeakApi.speak_text_to_speech ...'
-      end
-      # verify the required parameter 'req_config' is set
-      if @api_client.config.client_side_validation && req_config.nil?
-        fail ArgumentError, "Missing the required parameter 'req_config' when calling SpeakApi.speak_text_to_speech"
+        @api_client.config.logger.debug 'Calling API: SpeakApi.speech_speak_text_voice_basic_audio_post ...'
       end
       # resource path
       local_var_path = '/speech/speak/text/voice/basic/audio'
@@ -111,15 +47,15 @@ module CloudmersiveVoiceRecognitionApiClient
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'text/json', 'application/xml', 'text/xml'])
+      header_params['Accept'] = @api_client.select_header_accept(['application/octet-stream'])
       # HTTP header 'Content-Type'
-      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'text/json', 'application/xml', 'text/xml', 'application/x-www-form-urlencoded'])
+      header_params['Content-Type'] = @api_client.select_header_content_type(['application/json', 'text/json', 'application/*+json'])
 
       # form parameters
       form_params = {}
 
       # http body (model)
-      post_body = @api_client.object_to_http_body(req_config)
+      post_body = @api_client.object_to_http_body(opts[:'body'])
       auth_names = ['Apikey']
       data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
@@ -127,9 +63,9 @@ module CloudmersiveVoiceRecognitionApiClient
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'Object')
+        :return_type => 'String')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: SpeakApi#speak_text_to_speech\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: SpeakApi#speech_speak_text_voice_basic_audio_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

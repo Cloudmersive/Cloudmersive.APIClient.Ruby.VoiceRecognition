@@ -13,27 +13,37 @@ Swagger Codegen version: 2.4.14
 require 'date'
 
 module CloudmersiveVoiceRecognitionApiClient
-  # Input to a Text To Speech request
+  # Input to a text-to-speech request
   class TextToSpeechRequest
+    # Text to be converted to speech
+    attr_accessor :text
+
     # File format for output audio file: wav or mp3, default is mp3
     attr_accessor :format
 
-    # Text to be converted to speech
-    attr_accessor :text
+    # ISO 639-3 three-letter language code (e.g. eng, spa, fra, hin, ita, jpn, por, zho). Default is eng (English).
+    attr_accessor :language_code
+
+    # Voice gender: Male or Female. Default is Female. Note: Male is not available for French and Chinese.
+    attr_accessor :gender
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
+        :'text' => :'Text',
         :'format' => :'Format',
-        :'text' => :'Text'
+        :'language_code' => :'LanguageCode',
+        :'gender' => :'Gender'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'text' => :'String',
         :'format' => :'String',
-        :'text' => :'String'
+        :'language_code' => :'String',
+        :'gender' => :'String'
       }
     end
 
@@ -45,12 +55,20 @@ module CloudmersiveVoiceRecognitionApiClient
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
+      if attributes.has_key?(:'Text')
+        self.text = attributes[:'Text']
+      end
+
       if attributes.has_key?(:'Format')
         self.format = attributes[:'Format']
       end
 
-      if attributes.has_key?(:'Text')
-        self.text = attributes[:'Text']
+      if attributes.has_key?(:'LanguageCode')
+        self.language_code = attributes[:'LanguageCode']
+      end
+
+      if attributes.has_key?(:'Gender')
+        self.gender = attributes[:'Gender']
       end
     end
 
@@ -72,8 +90,10 @@ module CloudmersiveVoiceRecognitionApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          text == o.text &&
           format == o.format &&
-          text == o.text
+          language_code == o.language_code &&
+          gender == o.gender
     end
 
     # @see the `==` method
@@ -85,7 +105,7 @@ module CloudmersiveVoiceRecognitionApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [format, text].hash
+      [text, format, language_code, gender].hash
     end
 
     # Builds the object from hash

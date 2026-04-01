@@ -19,6 +19,7 @@ require 'cloudmersive-voice-recognition-api-client/configuration'
 # Models
 require 'cloudmersive-voice-recognition-api-client/models/speech_recognition_result'
 require 'cloudmersive-voice-recognition-api-client/models/text_to_speech_request'
+require 'cloudmersive-voice-recognition-api-client/models/token_timestamp'
 
 # APIs
 require 'cloudmersive-voice-recognition-api-client/api/recognize_api'

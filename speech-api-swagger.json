@@ -1,0 +1,190 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "speechapi",
+    "description": "Speech APIs enable you to recognize speech and convert it to text using advanced machine learning, and also to convert text to speech.",
+    "version": "v1"
+  },
+  "paths": {
+    "/speech/recognize/file": {
+      "post": {
+        "tags": [
+          "Recognize"
+        ],
+        "summary": "Recognize audio input as text using Advanced AI",
+        "description": "Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "languageCode",
+            "description": "ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.",
+            "type": "string",
+            "default": ""
+          },
+          {
+            "in": "header",
+            "name": "recognitionMode",
+            "description": "Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.",
+            "type": "string",
+            "default": "Normal"
+          },
+          {
+            "in": "formData",
+            "name": "speechFile",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SpeechRecognitionResult"
+            }
+          }
+        }
+      }
+    },
+    "/speech/speak/text/voice/basic/audio": {
+      "post": {
+        "tags": [
+          "Speak"
+        ],
+        "summary": "Generate audio from text using Advanced AI",
+        "description": "Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "String input request",
+            "schema": {
+              "$ref": "#/definitions/TextToSpeechRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "format": "binary",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SpeechRecognitionResult": {
+      "description": "Result of recognizing speech",
+      "type": "object",
+      "properties": {
+        "TextResult": {
+          "description": "Recognition result in text format",
+          "type": "string",
+          "example": "Hello world, this is a test."
+        },
+        "Timestamps": {
+          "description": "Token-level timestamps with character offsets into TextResult",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TokenTimestamp"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "TextToSpeechRequest": {
+      "description": "Input to a text-to-speech request",
+      "type": "object",
+      "properties": {
+        "Text": {
+          "description": "Text to be converted to speech",
+          "type": "string",
+          "example": "Hello, this is a test of the text to speech system."
+        },
+        "Format": {
+          "description": "File format for output audio file: wav or mp3, default is mp3",
+          "type": "string",
+          "example": "mp3"
+        },
+        "LanguageCode": {
+          "description": "ISO 639-3 three-letter language code (e.g. eng, spa, fra, hin, ita, jpn, por, zho). Default is eng (English).",
+          "type": "string",
+          "example": "eng"
+        },
+        "Gender": {
+          "description": "Voice gender: Male or Female. Default is Female. Note: Male is not available for French and Chinese.",
+          "type": "string",
+          "example": "Female"
+        }
+      },
+      "additionalProperties": false
+    },
+    "TokenTimestamp": {
+      "description": "A single token with its time range and position in the output text",
+      "type": "object",
+      "properties": {
+        "Token": {
+          "description": "The token text (word or subword)",
+          "type": "string",
+          "example": " Hello"
+        },
+        "CharacterOffsetStart": {
+          "format": "int32",
+          "description": "Start character offset (0-based) in TextResult",
+          "type": "integer",
+          "example": 0
+        },
+        "CharacterOffsetEnd": {
+          "format": "int32",
+          "description": "End character offset (exclusive) in TextResult",
+          "type": "integer",
+          "example": 6
+        },
+        "StartTimeMs": {
+          "format": "int64",
+          "description": "Start time of this token in the audio, in milliseconds",
+          "type": "integer",
+          "example": 0
+        },
+        "EndTimeMs": {
+          "format": "int64",
+          "description": "End time of this token in the audio, in milliseconds",
+          "type": "integer",
+          "example": 500
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "securityDefinitions": {
+    "Apikey": {
+      "type": "apiKey",
+      "name": "Apikey",
+      "in": "header",
+      "description": "Apikey"
+    }
+  },
+  "security": [
+    {
+      "Apikey": []
+    }
+  ],
+  "host": "testapi.cloudmersive.com"
+}

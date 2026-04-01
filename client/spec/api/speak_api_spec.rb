@@ -32,26 +32,13 @@ describe 'SpeakApi' do
     end
   end
 
-  # unit tests for speak_post
-  # Perform text-to-speech on a string
-  # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-  # @param format File format to generate response in; possible values are \&quot;mp3\&quot; or \&quot;wav\&quot;
-  # @param text The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \&quot;The quick brown fox jumps over the lazy dog.\&quot;
+  # unit tests for speech_speak_text_voice_basic_audio_post
+  # Generate audio from text using Advanced AI
+  # Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.
   # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'speak_post test' do
-    it 'should work' do
-      # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
-    end
-  end
-
-  # unit tests for speak_text_to_speech
-  # Perform text-to-speech on a string
-  # Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-  # @param req_config String input request
-  # @param [Hash] opts the optional parameters
-  # @return [Object]
-  describe 'speak_text_to_speech test' do
+  # @option opts [TextToSpeechRequest] :body String input request
+  # @return [String]
+  describe 'speech_speak_text_voice_basic_audio_post test' do
     it 'should work' do
       # assertion here. ref: https://www.relishapp.com/rspec/rspec-expectations/docs/built-in-matchers
     end

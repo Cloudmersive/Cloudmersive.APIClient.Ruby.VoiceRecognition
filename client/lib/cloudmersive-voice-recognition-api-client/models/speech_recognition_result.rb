@@ -18,17 +18,22 @@ module CloudmersiveVoiceRecognitionApiClient
     # Recognition result in text format
     attr_accessor :text_result
 
+    # Token-level timestamps with character offsets into TextResult
+    attr_accessor :timestamps
+
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'text_result' => :'TextResult'
+        :'text_result' => :'TextResult',
+        :'timestamps' => :'Timestamps'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'text_result' => :'String'
+        :'text_result' => :'String',
+        :'timestamps' => :'Array<TokenTimestamp>'
       }
     end
 
@@ -42,6 +47,12 @@ module CloudmersiveVoiceRecognitionApiClient
 
       if attributes.has_key?(:'TextResult')
         self.text_result = attributes[:'TextResult']
+      end
+
+      if attributes.has_key?(:'Timestamps')
+        if (value = attributes[:'Timestamps']).is_a?(Array)
+          self.timestamps = value
+        end
       end
     end
 
@@ -63,7 +74,8 @@ module CloudmersiveVoiceRecognitionApiClient
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          text_result == o.text_result
+          text_result == o.text_result &&
+          timestamps == o.timestamps
     end
 
     # @see the `==` method
@@ -75,7 +87,7 @@ module CloudmersiveVoiceRecognitionApiClient
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [text_result].hash
+      [text_result, timestamps].hash
     end
 
     # Builds the object from hash

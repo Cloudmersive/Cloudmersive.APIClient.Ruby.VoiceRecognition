@@ -129,7 +129,7 @@ module CloudmersiveVoiceRecognitionApiClient
 
     def initialize
       @scheme = 'https'
-      @host = 'api.cloudmersive.com'
+      @host = 'testapi.cloudmersive.com'
       @base_path = ''
       @api_key = {}
       @api_key_prefix = {}

@@ -19,28 +19,28 @@ module CloudmersiveVoiceRecognitionApiClient
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Recognize audio input as text using machine learning
-    # Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.
-    # @param speech_file Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+    # Recognize audio input as text using Advanced AI
+    # Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :language_code ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect. (default to )
+    # @option opts [String] :recognition_mode Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments. (default to Normal)
+    # @option opts [File] :speech_file 
     # @return [SpeechRecognitionResult]
-    def recognize_file(speech_file, opts = {})
-      data, _status_code, _headers = recognize_file_with_http_info(speech_file, opts)
+    def speech_recognize_file_post(opts = {})
+      data, _status_code, _headers = speech_recognize_file_post_with_http_info(opts)
       data
     end
 
-    # Recognize audio input as text using machine learning
-    # Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.
-    # @param speech_file Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+    # Recognize audio input as text using Advanced AI
+    # Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.
     # @param [Hash] opts the optional parameters
+    # @option opts [String] :language_code ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+    # @option opts [String] :recognition_mode Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+    # @option opts [File] :speech_file 
     # @return [Array<(SpeechRecognitionResult, Fixnum, Hash)>] SpeechRecognitionResult data, response status code and response headers
-    def recognize_file_with_http_info(speech_file, opts = {})
+    def speech_recognize_file_post_with_http_info(opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: RecognizeApi.recognize_file ...'
-      end
-      # verify the required parameter 'speech_file' is set
-      if @api_client.config.client_side_validation && speech_file.nil?
-        fail ArgumentError, "Missing the required parameter 'speech_file' when calling RecognizeApi.recognize_file"
+        @api_client.config.logger.debug 'Calling API: RecognizeApi.speech_recognize_file_post ...'
       end
       # resource path
       local_var_path = '/speech/recognize/file'
@@ -51,13 +51,15 @@ module CloudmersiveVoiceRecognitionApiClient
       # header parameters
       header_params = {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'text/json', 'application/xml', 'text/xml'])
+      header_params['Accept'] = @api_client.select_header_accept(['text/plain', 'application/json', 'text/json'])
       # HTTP header 'Content-Type'
       header_params['Content-Type'] = @api_client.select_header_content_type(['multipart/form-data'])
+      header_params[:'languageCode'] = opts[:'language_code'] if !opts[:'language_code'].nil?
+      header_params[:'recognitionMode'] = opts[:'recognition_mode'] if !opts[:'recognition_mode'].nil?
 
       # form parameters
       form_params = {}
-      form_params['speechFile'] = speech_file
+      form_params['speechFile'] = opts[:'speech_file'] if !opts[:'speech_file'].nil?
 
       # http body (model)
       post_body = nil
@@ -70,7 +72,7 @@ module CloudmersiveVoiceRecognitionApiClient
         :auth_names => auth_names,
         :return_type => 'SpeechRecognitionResult')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: RecognizeApi#recognize_file\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: RecognizeApi#speech_recognize_file_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
